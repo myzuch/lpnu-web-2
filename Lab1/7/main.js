@@ -11,6 +11,9 @@ function AddMarket(name) {
   market = new Market(name);
   markets.push(market);
 }
+AddMarket('M1');
+AddMarket('M2');
+AddMarket('M3');
 //b
 function EditMarket(name, market) {
   for (i = 0, len = markets.length; i < len; i++) {
@@ -19,19 +22,26 @@ function EditMarket(name, market) {
     }
   }
 }
+EditMarket('M2', new Market('edited_M2'))
 //c
 function FindMarket(name) {
   return markets.filter(market => market.name === name)[0]
 }
+console.log('Find market:', FindMarket('edited_M2'));
 //d
 function RmMarket(name) {
     markets = markets.filter(market => market.name != name)
 }
+RmMarket('M1');
 //e
 function AddGoods(name){
   goods = new Goods(name)
   all_goods.push(goods);
 }
+AddGoods('G1');
+AddGoods('G2');
+AddGoods('G3');
+AddGoods('g20')
 //f
 function EditGoods(name, goods) {
   for (i = 0, len = all_goods.length; i < len; i++) {
@@ -41,19 +51,25 @@ function EditGoods(name, goods) {
     }
   }
 }
+EditGoods('G2', new Goods('G2_1'))
 //g
 function RmGoods(name) {
-    all_goods = all_goods.filter(market => goods.name != name)
+    all_goods = all_goods.filter(goods => goods.name != name)
 }
+RmGoods('G3')
 //h
 function FindGoods(name) {
   return all_goods.filter(goods => goods.name === name)[0]
 }
+console.log('Find goods:', FindGoods('G2_1'))
 //i
 function AddStock(name){
   stock = new Stock(name)
   stocks.push(stock);
 }
+AddStock('S1');
+AddStock('S2');
+AddStock('S3');
 //j
 function EditStock(name, stock) {
   for (i = 0, len = all_goods.length; i < len; i++) {
@@ -63,19 +79,23 @@ function EditStock(name, stock) {
     }
   }
 }
+EditStock('S2', new Stock('S2_e'))
 //k
 function RmStock(name) {
     stocks = stocks.filter(stock => stock.name != name)
 }
+RmStock('S2_e')
 //l
 function FindStock(name) {
   return stocks.filter(stock => stock.name === name)[0]
 }
+console.log('Find stock:', FindStock('S1'))
 //m
 function ShipGoodsOnStock(goods, stock){
   stock.goods.push(goods)
   return
 }
+ShipGoodsOnStock(all_goods[0], stocks[0])
 //n
 function RmGoodsFromStock(goods, stock) {
   stock.goods = stock.goods.filter(good => good.name != goods.name)
@@ -90,17 +110,8 @@ function ShipGoodsToMarket(goods, stock, market) {
   RmGoodsFromStock(goods, stock)
   market.goods.push(goods)
 }
-AddMarket('M1');
-AddMarket('M2');
-AddMarket('M3');
-AddGoods('G1');
-AddGoods('G2');
-AddGoods('G3');
-AddStock('S1');
-AddStock('S2');
-AddStock('S3');
-EditMarket('M2', new Market('edited_M2'))
-RmMarket('M1');
-ShipGoodsOnStock(all_goods[0], stocks[0])
 ShipGoodsToMarket(all_goods[0], stocks[0], markets[0])
-console.log(FindMarket('edited_M2'));
+
+console.log(markets)
+console.log(all_goods)
+console.log(stocks)
